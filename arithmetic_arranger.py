@@ -1,11 +1,11 @@
-
 def arithmetic_arranger(problems, compute=False):
-  
   arranged_problems = ""
   cursor_pos=[0,0,0,0,0]
   first_operand=[0,0,0,0,0]
   second_operand=[0,0,0,0,0]
+  second_operand_length=[0,0,0,0,0]
   answer=[0,0,0,0,0]
+  line=""
   problem_number = 0  # the index number of current problem
   number_of_problems = len(problems)
   if number_of_problems > 5:
@@ -62,10 +62,20 @@ def arithmetic_arranger(problems, compute=False):
         second_operand[problem_number] =second_operand[problem_number][0:1]+" "+second_operand[problem_number][1:len(second_operand[problem_number])]
       #while len(first_operand[problem_number]) < len(second_operand[problem_number])-1:
       #  first_operand[problem_number] =first_operand[problem_number][0:1]+" "+first_operand[problem_number][1:len(first_operand[problem_number])]
+      second_operand_length[problem_number]=len(second_operand[problem_number])
       second_operand[problem_number]=second_operand[problem_number].rjust(8)  
       arranged_problems = arranged_problems + second_operand[problem_number]
       problem_number = problem_number+1
-    arranged_problems = arranged_problems + "\n   -----   -----   -----   -----"
+    arranged_problems = arranged_problems + "\n"
+    
+    for x in second_operand_length:
+      line=""
+      while x>0:
+        line = line + "-"
+        x=x-1
+      line = line.rjust(8)
+      arranged_problems = arranged_problems + line
+      
   
     if (compute):
       arranged_problems = arranged_problems + "\n"
